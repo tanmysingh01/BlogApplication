@@ -18,13 +18,19 @@ import com.project.blogapplication.exceptions.ResourceNotFoundException;
 
 public class MyErrorController implements ErrorController {
 	
+	/**
+	 * @param res
+	 * @return
+	 */
 	@RequestMapping("/error")
     public String handleError(HttpServletResponse res)
     {
         
 		if (res.getStatus()==HttpStatus.NOT_FOUND.value()) {
-			//System.out.println(ResourceNotFoundException);
-			return String.valueOf("OOOPS!!!! Entity you are looking for is not available");
+			
+			//ResourceNotFoundException.getFieldValue();
+			return ResourceNotFoundException
+							.ResourceNotFoundMessagebody("Post", "id", ResourceNotFoundException.getFieldValue());
 		}
 		else
 		return String.valueOf(res.getStatus());

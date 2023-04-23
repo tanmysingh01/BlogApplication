@@ -12,7 +12,7 @@ public class ResourceNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 402934271858462113L;
 	private String resourcename;
 	private String fieldname;
-	private String fieldValue;
+	private static String fieldValue;
 
 	public ResourceNotFoundException(String resourcename, String fieldname, String fieldValue) {
 		super(String.format("%s is not found with %s : %s ", resourcename, fieldname, fieldValue));
@@ -30,7 +30,7 @@ public class ResourceNotFoundException extends RuntimeException {
 		return fieldname;
 	}
 
-	public String getFieldValue() {
+	public static String getFieldValue() {
 		return fieldValue;
 	}
 
