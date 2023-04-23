@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.blogapplication.exceptions.ResourceNotFoundException;
@@ -35,10 +36,18 @@ public class PostController {
 
 	}
 
+	/**
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
 	@GetMapping
-	public ResponseEntity<List<PostDto>> getAllPost() {
+	public ResponseEntity<List<PostDto>> getAllPost(
+		@RequestParam(value="pageNo", required = false, defaultValue = "0") int pageNo,
+		@RequestParam(value="pageSize", required = false, defaultValue = "2") int pageSize
+	) {
 
-		return new ResponseEntity<List<PostDto>>(postservice.getAllPost(), HttpStatus.OK);
+		return new ResponseEntity<List<PostDto>>(postservice.getAllPost(pageNo, pageSize), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
